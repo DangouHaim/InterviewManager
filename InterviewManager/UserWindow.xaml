@@ -76,7 +76,7 @@
                 <ListBox Name="UserList" SelectionChanged="UserList_SelectionChanged" MouseUp="UserList_MouseUp"></ListBox>
                 <Calendar Name="Calendar"></Calendar>
             </StackPanel>
-            <Label Name="PhoneL" Style="{StaticResource PhoneLabel}">asdasd</Label>
+            <Label Name="PhoneL" Style="{StaticResource PhoneLabel}"></Label>
         </StackPanel>
         <StackPanel Name="MainUI" Style="{StaticResource ButtonStack}">
             <Button Name="Profile" Click="Profile_Click">Profile</Button>
