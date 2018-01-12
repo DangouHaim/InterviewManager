@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Tools window" 
         Height="320" 
-        Width="460"
+        Width="530"
         ResizeMode="NoResize"
         Closing="Window_Closing"
         Loaded="Window_Loaded"
@@ -18,8 +18,9 @@
         >
     <Window.Resources>
         <Style x:Key="PhoneLabel" TargetType="Label">
-            <Setter Property="Margin" Value="40 0 0 0"></Setter>
+            <Setter Property="Margin" Value="60 0 0 0"></Setter>
             <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Foreground" Value="#fff"></Setter>
         </Style>
         <Style x:Key="ButtonStack" TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal"></Setter>
@@ -73,13 +74,14 @@
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
             <Style.Resources>
                 <Style TargetType="Calendar">
-                    <Setter Property="MinWidth" Value="180"></Setter>
+                    <Setter Property="MinWidth" Value="200"></Setter>
                     <Setter Property="SelectionMode" Value="MultipleRange"></Setter>
+                    <Setter Property="Height" Value="170"></Setter>
                 </Style>
                 <Style TargetType="ListBox">
                     <Setter Property="Margin" Value="3 3 10 3"></Setter>
-                    <Setter Property="MinWidth" Value="180"></Setter>
-                    <Setter Property="Height" Value="160"></Setter>
+                    <Setter Property="MinWidth" Value="200"></Setter>
+                    <Setter Property="Height" Value="170"></Setter>
                     <Setter Property="ItemTemplate">
                         <Setter.Value>
                             <DataTemplate>
@@ -114,7 +116,7 @@
         </Rectangle>
         
         <StackPanel>
-            <Label Name="ListName" Height="30" Margin="40 5 0 0">Users list</Label>
+            <Label Name="ListName" Height="30" Margin="60 5 0 0">Users list</Label>
             <StackPanel Style="{StaticResource UIStack}">
                 <ListBox ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Name="UserList" SelectionChanged="UserList_SelectionChanged" MouseUp="UserList_MouseUp"></ListBox>
                 <Calendar Name="Calendar"></Calendar>
@@ -122,6 +124,7 @@
             <Label Name="PhoneL" Style="{StaticResource PhoneLabel}"></Label>
         </StackPanel>
         <StackPanel Name="MainUI" Style="{StaticResource ButtonStack}">
+            <Button Name="Back" Click="Back_Click">Back</Button>
             <Button Name="Profile" Click="Profile_Click">Profile</Button>
             <Button Name="MyDates" Click="MyDates_Click">MyDates</Button>
             <StackPanel Name="AdminUI">

@@ -318,7 +318,7 @@ namespace InterviewManager
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Process.GetCurrentProcess().Kill();
+            MainWindow.ShowWindow();
         }
 
         private void AddInterviewer_Click(object sender, RoutedEventArgs e)
@@ -605,6 +605,11 @@ namespace InterviewManager
                 DragMove();
             }
             catch { }
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 

@@ -21,9 +21,20 @@ namespace InterviewManager
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static MainWindow ThisWindow = new MainWindow();
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Init()
+        {
+            ThisWindow = this;
+        }
+
+        public static void ShowWindow()
+        {
+            ThisWindow.Show();
         }
 
         private void Registration_Click(object sender, RoutedEventArgs e)
@@ -45,7 +56,11 @@ namespace InterviewManager
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            Process.GetCurrentProcess().Kill();
+            try
+            {
+                Process.GetCurrentProcess().Kill();
+            }
+            catch { }
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -53,6 +68,20 @@ namespace InterviewManager
             try
             {
                 DragMove();
+            }
+            catch { }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Init();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.GetCurrentProcess().Kill();
             }
             catch { }
         }

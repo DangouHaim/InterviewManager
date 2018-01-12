@@ -13,6 +13,8 @@
         Background="Transparent"
         ResizeMode="NoResize"
         MouseDown="Window_MouseDown"
+        Loaded="Window_Loaded"
+        Closed="Window_Closed"
         >
     <Window.Resources>
 

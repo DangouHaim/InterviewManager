@@ -90,7 +90,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Style="{StaticResource ButtonStack}">
-            <Label Name="Error"></Label>
+            <Label Name="Error" Foreground="#fff"></Label>
             <Button IsCancel="True">Cancel</Button>
             <Button IsDefault="True" Click="Button_Click">Ok</Button>
         </StackPanel>
