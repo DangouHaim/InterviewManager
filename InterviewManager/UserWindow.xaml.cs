@@ -103,12 +103,22 @@ namespace InterviewManager
                                     {
                                         if(d1 == d2)
                                         {
-                                            if (d1 == DateTime.Now.Date.ToShortDateString())
+                                            var now = DateTime.Now.Date;
+                                            if (d1 == now.ToShortDateString())
+                                            {
+                                                if (ldate != date)
+                                                {
+                                                    ldate = date;
+                                                    MessageBox.Show("You have 1 interview today.");
+                                                }
+                                            }
+                                            now = now.Add(new TimeSpan(1, 0, 0, 0));
+                                            if (d1 == now.ToShortDateString())
                                             {
                                                 if(ldate != date)
                                                 {
                                                     ldate = date;
-                                                    MessageBox.Show("You have 1 interview today.");
+                                                    MessageBox.Show("You have 1 interview afternoon.");
                                                 }
                                             }
                                         }
