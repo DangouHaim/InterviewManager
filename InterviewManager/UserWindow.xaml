@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:InterviewManager"
         mc:Ignorable="d"
         Title="User" 
-        Height="270" 
+        Height="320" 
         Width="450"
         ResizeMode="NoResize"
         Closing="Window_Closing"
@@ -72,6 +72,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel>
+            <Label Name="ListName" Height="30" Margin="40 5 0 0">Users list</Label>
             <StackPanel Style="{StaticResource UIStack}">
                 <ListBox Name="UserList" SelectionChanged="UserList_SelectionChanged" MouseUp="UserList_MouseUp"></ListBox>
                 <Calendar Name="Calendar"></Calendar>

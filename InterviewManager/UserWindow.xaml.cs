@@ -62,6 +62,7 @@ namespace InterviewManager
                 {
                     MainUI.Children.Remove(AdminUI);
                     MainUI.Children.Remove(InterviewerUI);
+                    ListName.Content = "Interviewers list";
                 }
             }
         }
@@ -358,6 +359,7 @@ namespace InterviewManager
             var i = UserList.SelectedIndex;
             if (i != -1)
             {
+                PhoneL.Content = "Contact data: " + _users[i].Phone;
                 if (Permission == Permissions.Admin || Permission == Permissions.Interviewer)
                 {
                     if (_users[i].IsInterviewer)
