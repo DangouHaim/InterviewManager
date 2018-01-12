@@ -9,6 +9,7 @@
         Height="300" 
         Width="300"
         Loaded="Window_Loaded"
+        ResizeMode="NoResize"
         >
     <Window.Resources>
         <Style x:Key="ButtonStack" TargetType="StackPanel">
