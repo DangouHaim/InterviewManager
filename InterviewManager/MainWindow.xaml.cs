@@ -28,15 +28,19 @@ namespace InterviewManager
 
         private void Registration_Click(object sender, RoutedEventArgs e)
         {
+            Blur.Radius = 10;
             new RegisterLoginWindow().ShowDialog();
+            Blur.Radius = 0;
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            if(new RegisterLoginWindow() { IsRegistration = false }.ShowDialog().Value)
+            Blur.Radius = 10;
+            if (new RegisterLoginWindow() { IsRegistration = false }.ShowDialog().Value)
             {
                 Hide();
             }
+            Blur.Radius = 0;
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

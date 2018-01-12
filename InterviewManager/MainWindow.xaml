@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:InterviewManager"
         mc:Ignorable="d"
         Title="InterviewManager" 
-        Height="350" 
-        Width="525"
-        MaxWidth="525"
-        MaxHeight="350"
-        WindowStyle="ToolWindow"
+        Height="300" 
+        Width="400"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
         ResizeMode="NoResize"
+        MouseDown="Window_MouseDown"
         >
     <Window.Resources>
         <Style TargetType="StackPanel" x:Key="ButtonStack">
@@ -32,7 +33,18 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Rectangle Opacity="0.7" RadiusX="25" RadiusY="25">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.4,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0.3">
+                    <GradientStop Color="#B2000000" Offset="1"/>
+                    <GradientStop Color="#B2D4D4D4"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
         <StackPanel Style="{StaticResource ButtonStack}">
+            <StackPanel.Effect>
+                <BlurEffect x:Name="Blur" Radius="0"></BlurEffect>
+            </StackPanel.Effect>
             <Label>welcome</Label>
             <Button Name="Registration" Click="Registration_Click">Registration</Button>
             <Button Name="Login" Click="Login_Click">Log in</Button>
