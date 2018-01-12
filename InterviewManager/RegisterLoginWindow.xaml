@@ -5,11 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterviewManager"
         mc:Ignorable="d"
-        Title="Authorization" 
-        Height="420"
+        Title="Account" 
+        Height="400"
         Width="300"
         Loaded="Window_Loaded"
         ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        MouseDown="Window_MouseDown"
         >
     <Window.Resources>
         <Style x:Key="ButtonStack" TargetType="StackPanel">
@@ -17,17 +21,41 @@
             <Setter Property="HorizontalAlignment" Value="Right"></Setter>
             <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
             <Setter Property="Grid.Row" Value="1"></Setter>
+            <Setter Property="Margin" Value="0 0 10 10"></Setter>
             <Style.Resources>
                 <Style TargetType="Button">
                     <Setter Property="Width" Value="50"></Setter>
                     <Setter Property="Height" Value="20"></Setter>
                     <Setter Property="Margin" Value="5"></Setter>
+                    <Setter Property="Border.CornerRadius" Value="7" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="{TemplateBinding Border.CornerRadius}" BorderBrush="#ccc" BorderThickness="0,1,1,0" >
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#FFCCE8F3" />
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="SkyBlue" />
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Background" Value="#EFEFEF" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
             </Style.Resources>
         </Style>
 
         <Style x:Key="Fields" TargetType="StackPanel">
-            <Setter Property="Margin" Value="10 0 10 0"></Setter>
+            <Setter Property="Margin" Value="10 20 10 0"></Setter>
         </Style>
     </Window.Resources>
     <Grid>
@@ -35,6 +63,14 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
+        <Rectangle Grid.RowSpan="2" Opacity="1" RadiusX="25" RadiusY="25">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.4,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0.3">
+                    <GradientStop Color="#B2000000" Offset="1"/>
+                    <GradientStop Color="#B2D4D4D4"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
         <StackPanel Style="{StaticResource Fields}">
             <Label>Login</Label>
             <TextBox Name="Login"></TextBox>

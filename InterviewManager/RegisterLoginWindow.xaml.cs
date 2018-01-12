@@ -234,6 +234,15 @@ namespace InterviewManager
         {
             Init();
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                DragMove();
+            }
+            catch { }
+        }
     }
 
     internal class SubjectItem

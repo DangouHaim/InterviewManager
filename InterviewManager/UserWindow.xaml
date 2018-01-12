@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterviewManager"
         mc:Ignorable="d"
-        Title="User" 
+        Title="Tools window" 
         Height="320" 
-        Width="450"
+        Width="460"
         ResizeMode="NoResize"
         Closing="Window_Closing"
         Loaded="Window_Loaded"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        MouseDown="Window_MouseDown"
         >
     <Window.Resources>
         <Style x:Key="PhoneLabel" TargetType="Label">
@@ -21,6 +25,7 @@
             <Setter Property="Orientation" Value="Horizontal"></Setter>
             <Setter Property="HorizontalAlignment" Value="Right"></Setter>
             <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+            <Setter Property="Margin" Value="0 0 10 10"></Setter>
             <Setter Property="Grid.Row" Value="1"></Setter>
             <Style.Resources>
                 <Style TargetType="Button">
@@ -29,6 +34,30 @@
                     <Setter Property="Height" Value="20"></Setter>
                     <Setter Property="Margin" Value="5"></Setter>
                     <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                    <Setter Property="Border.CornerRadius" Value="7" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="{TemplateBinding Border.CornerRadius}" BorderBrush="#ccc" BorderThickness="0,1,1,0" >
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#FFCCE8F3" />
+                                            <Setter Property="Padding" Value="5 0 5 0" />
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="SkyBlue" />
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Background" Value="#EFEFEF" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
                 <Style TargetType="StackPanel">
                     <Setter Property="Orientation" Value="Horizontal"></Setter>
@@ -50,6 +79,7 @@
                 <Style TargetType="ListBox">
                     <Setter Property="Margin" Value="3 3 10 3"></Setter>
                     <Setter Property="MinWidth" Value="180"></Setter>
+                    <Setter Property="Height" Value="160"></Setter>
                     <Setter Property="ItemTemplate">
                         <Setter.Value>
                             <DataTemplate>
@@ -70,11 +100,23 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.Effect>
+            <BlurEffect x:Name="Blur" Radius="0"></BlurEffect>
+        </Grid.Effect>
 
+        <Rectangle Grid.RowSpan="2" Opacity="1" RadiusX="25" RadiusY="25">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.4,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0.3">
+                    <GradientStop Color="#B2000000" Offset="1"/>
+                    <GradientStop Color="#B2D4D4D4"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        
         <StackPanel>
             <Label Name="ListName" Height="30" Margin="40 5 0 0">Users list</Label>
             <StackPanel Style="{StaticResource UIStack}">
-                <ListBox Name="UserList" SelectionChanged="UserList_SelectionChanged" MouseUp="UserList_MouseUp"></ListBox>
+                <ListBox ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Name="UserList" SelectionChanged="UserList_SelectionChanged" MouseUp="UserList_MouseUp"></ListBox>
                 <Calendar Name="Calendar"></Calendar>
             </StackPanel>
             <Label Name="PhoneL" Style="{StaticResource PhoneLabel}"></Label>

@@ -323,7 +323,8 @@ namespace InterviewManager
 
         private void AddInterviewer_Click(object sender, RoutedEventArgs e)
         {
-            if(new RegisterLoginWindow() { PermissionID = PermissionIDs.Interviewer }.ShowDialog().Value)
+            Blur.Radius = 10;
+            if (new RegisterLoginWindow() { PermissionID = PermissionIDs.Interviewer }.ShowDialog().Value)
             {
                 _users.Clear();
                 foreach(var v in GetUsers())
@@ -331,6 +332,7 @@ namespace InterviewManager
                     _users.Add(v);
                 }
             }
+            Blur.Radius = 0;
         }
 
         private void RemoveInterviewer_Click(object sender, RoutedEventArgs e)
@@ -404,14 +406,18 @@ namespace InterviewManager
             if(Permission == Permissions.User)
             {
                 var w = new ProfileWindow() { ProfileIn = GetProfile(UID) };
-                if(w.ShowDialog().Value)
+                Blur.Radius = 10;
+                if (w.ShowDialog().Value)
                 {
                     SetProfile(UID, w.ProfileOut);
                 }
+                Blur.Radius = 0;
             }
             else
             {
+                Blur.Radius = 10;
                 new ProfileWindow() { ProfileIn = GetProfile(_users[UserList.SelectedIndex].ID), IsUser = false}.ShowDialog();
+                Blur.Radius = 0;
             }
         }
 
@@ -590,6 +596,15 @@ namespace InterviewManager
         private void UserList_MouseUp(object sender, MouseButtonEventArgs e)
         {
             SelectionChanged();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                DragMove();
+            }
+            catch { }
         }
     }
 
